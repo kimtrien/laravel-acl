@@ -8,5 +8,12 @@
             "email": "kimtrien@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "KjmTrue\\Acl\\": "src/"
+        }
+    }
 }
