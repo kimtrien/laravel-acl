@@ -19,7 +19,7 @@ class Acl
         if (Auth::guard($guard)->check()) {
             $routeName = $request->route()->getName();
 
-            if (Auth::guard($guard)->user()->role->is_admin || Auth::guard($guard)->user()->can($routeName)) {
+            if (Auth::guard($guard)->user()->role->is_admin || Auth::guard($guard)->user()->hasPermissionTo($routeName)) {
                 return $next($request);
             }
         }
