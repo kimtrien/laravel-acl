@@ -13,11 +13,11 @@ class Acl
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
         $routeName = $request->route()->getName();
 
-        if (Auth::check() && Auth::user()->can($routeName)) {
+        if (Auth::guard($guard)->check() && Auth::guard($guard)->user()->can($routeName)) {
             return $next($request);
         }
 
