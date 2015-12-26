@@ -11,14 +11,17 @@ class Acl
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param  string|null  $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $routeName = $request->route()->getName();
+        if (Auth::guard($guard)->check()) {
+            $routeName = $request->route()->getName();
 
-        if (Auth::guard($guard)->check() && Auth::guard($guard)->user()->can($routeName)) {
-            return $next($request);
+            if (Auth::guard($guard)->user()->role->is_admin || Auth::guard($guard)->user()->can($routeName)) {
+                return $next($request);
+            }
         }
 
         if ($request->isJson() || $request->wantsJson()) {
