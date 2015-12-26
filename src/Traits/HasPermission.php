@@ -16,7 +16,9 @@ trait HasPermission
     {
         if (! $this->permissions) {
             if ($this->role) {
-                foreach ($this->role->permissions as $key => $permission) {
+                $permissions = (array) json_decode($this->role->permissions);
+
+                foreach ($permissions as $key => $permission) {
                     if ($permission) {
                         $this->permissions[] = $key;
                     }
