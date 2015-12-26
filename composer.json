@@ -1,0 +1,12 @@
+{
+    "name": "kjmtrue/laravel-acl",
+    "description": "Laravel ACL",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kjmtrue",
+            "email": "kimtrien@gmail.com"
+        }
+    ],
+    "require": {}
+}
