@@ -1,12 +1,18 @@
 <?php
 namespace KjmTrue\Acl\Traits;
 
+use Auth;
+
 trait HasPermission
 {
     protected $permissions = [];
 
     public function hasPermissionTo($permission)
     {
+        if (Auth::check() && Auth::user()->role->is_admin) {
+            return true;
+        }
+
         $permissions = $this->getPermissions();
 
         return in_array($permission, $permissions);
