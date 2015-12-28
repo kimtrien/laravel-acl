@@ -9,6 +9,9 @@ trait HasPermission
 
     public function hasPermissionTo($permission)
     {
+        /**
+         * Fix
+         */
         if (Auth::check() && Auth::user()->role->is_admin) {
             return true;
         }
